@@ -13,6 +13,13 @@ class Character {
     }
 
     
+   
+    }
+
+    get attack() {
+        return this.baseAttack; 
+    }
+    
     calculateAttack(distance) {
         let attack = this.baseAttack;
 
@@ -22,12 +29,6 @@ class Character {
         attack *= linearReduction;
 
         return attack;
-
-    }
-
-    get attack() {
-        return this.baseAttack; 
-    }
 
     set attack(value) {
         this.baseAttack = value;
