@@ -7,11 +7,7 @@ class Daemon extends Character {
     }
 
     get attack() {
-        return this.calculateAttack(this.distance);
-    }
-
-    calculateAttack(distance) {
-        let attack = this.baseAttack;
+   let attack = this.baseAttack;
 
         // Уменьшение атаки в зависимости от расстояния
         const linearReduction = Math.max(0, 1 - (this.distance - 1) * 0.1);
