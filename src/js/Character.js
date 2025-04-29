@@ -17,22 +17,19 @@ class Character {
     }
 
     get attack() {
-        return this.baseAttack; 
-    }
-    
-    calculateAttack(distance) {
-        let attack = this.baseAttack;
+       let attack = this.baseAttack;
 
-       
-        const linearReduction = Math.max(0, 1 - (distance - 1) * 0.1); 
-
+        // Уменьшение атаки в зависимости от расстояния
+        const linearReduction = Math.max(0, 1 - (this.distance - 1) * 0.1);
         attack *= linearReduction;
 
-        return attack;
+        // Если персонаж "stoned", уменьшаем атаку на логарифм
+        if (this.stoned) {
+            attack -= Math.log2(this.distance) * 5; // Пример, как можно уменьшить атаку
+            attack = Math.max(0, attack); // Убедимся, что атака не отрицательная
+        }
 
-    set attack(value) {
-        this.baseAttack = value;
-    }
+        return attack;
 }
 
 module.exports = Character; 
