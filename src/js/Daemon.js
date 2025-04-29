@@ -11,16 +11,19 @@ class Daemon extends Character {
     }
 
     calculateAttack(distance) {
-        let attack = super.calculateAttack(distance); 
-        if (this.stoned) {
-            attack -= Math.log2(distance) * 5; 
-        }
-        return Math.max(0, attack); 
-    }
+        let attack = this.baseAttack;
 
-    set attack(value) {
-        this.baseAttack = value;
-    }
+        // Уменьшение атаки в зависимости от расстояния
+        const linearReduction = Math.max(0, 1 - (this.distance - 1) * 0.1);
+        attack *= linearReduction;
+
+        // Если персонаж "stoned", уменьшаем атаку на логарифм
+        if (this.stoned) {
+            attack -= Math.log2(this.distance) * 5; // Пример, как можно уменьшить атаку
+            attack = Math.max(0, attack); // Убедимся, что атака не отрицательная
+        }
+
+        return attack;
 }
 
 module.exports = Daemon; 
