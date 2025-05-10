@@ -6,6 +6,10 @@ class Magician extends Character {
         this.distance = 1; 
     }
 
+     set attack(value) {
+        this._attack = value;
+    }
+
     get attack() {
        let attack = this.baseAttack;
 
@@ -20,6 +24,7 @@ class Magician extends Character {
         }
 
         return attack;
+}
 }
 
 module.exports = Magician; 
